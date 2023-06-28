@@ -14,8 +14,6 @@ require 'classes/forum.php';
 require 'classes/mail.php';
 require 'classes/admin.php';
 
-$ds = DIRECTORY_SEPARATOR;
-$var = preg_quote("#^$ds$#",'/');
 
 
 if(preg_match('#^/$#',$url)==1) {
