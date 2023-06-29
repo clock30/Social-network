@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Auth extends Page{
 
     public function age(){
@@ -91,9 +92,8 @@ class Auth extends Page{
     public function auth(){
         if(isset($_POST['login'])&&isset($_POST['password'])){
             $login = $_POST['login'];
-            $query = "SELECT * FROM auth WHERE login='$login'";
-
             require 'classes/link.php';
+            $query = "SELECT * FROM auth WHERE login='$login'";
             $result = mysqli_query($link,$query) or die(mysqli_error($link));
             for($data=[];$row=mysqli_fetch_assoc($result);$data[]=$row);
             if(!empty($data)){

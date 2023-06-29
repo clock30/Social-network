@@ -1,5 +1,5 @@
 <?php
-
+namespace classes;
 class Post extends Profile{
     public function profilePostLink(){
         if(isset($_GET['id'])){

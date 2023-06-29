@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Admin extends Page{
     public function getAdminPanel(){
         if(isset($_SESSION['auth'])&&($_SESSION['status_id']==1)){
@@ -111,21 +112,5 @@ class Admin extends Page{
             else header("Location: auth.php");
         }
         else header("Location: auth.php");
-    }
-
-    public function deleteUserDir($path){
-        if(!empty(array_diff(scandir($path),['.','..']))){
-            foreach(array_diff(scandir($path),['.','..']) as $item) {
-                $path2 = $path;
-                $path .= "/".$item;
-                if (is_file($path)) {
-                    unlink($path);
-                } else {
-                    $this->deleteUserDir($path);
-                }
-                $path = $path2;
-            }
-        }
-        rmdir($path);
     }
 }

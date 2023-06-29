@@ -1,19 +1,8 @@
 <?php
-$url = $_SERVER['REQUEST_URI'];
-
+namespace classes;
+spl_autoload_register();
 require 'classes/session.php';
-require 'classes/page.php';
-require 'classes/profile.php';
-require 'classes/friends.php';
-require 'classes/post.php';
-require 'classes/gallery.php';
-require 'classes/auth.php';
-require 'classes/reg.php';
-require 'classes/account.php';
-require 'classes/forum.php';
-require 'classes/mail.php';
-require 'classes/admin.php';
-
+$url = $_SERVER['REQUEST_URI'];
 
 
 if(preg_match('#^/$#',$url)==1) {
@@ -239,7 +228,7 @@ if(preg_match('#^/gallery\.php\?id=[0-9]+?&delete_photo=\w+?\.[a-z]+$#',$url)==1
 
 if(preg_match('#^/exit.php$#',$url,$match)==1){
     if(isset($_SESSION['auth'])) {
-        $exit = new Page;
+        $exit = new \classes\Page;
         $layout_exit = file_get_contents('templates/exit.php');
         $layout_exit = str_replace('{{getLogin}}',$exit->getlogin($_SESSION['id']),$layout_exit);
         $layout_exit = str_replace('{{header}}',$exit->header(),$layout_exit);
@@ -252,7 +241,7 @@ if(preg_match('#^/exit.php$#',$url,$match)==1){
 
 if(preg_match('#^/users.php$#',$url,$match)==1) {
     if(isset($_SESSION['auth'])) {
-        $users = new Page;
+        $users = new \classes\Page;
         $layout_users = file_get_contents('templates/users.php');
         $layout_users = str_replace('{{header}}', $users->header(), $layout_users);
         $layout_users = str_replace('{{footer}}',$users->footer(),$layout_users);

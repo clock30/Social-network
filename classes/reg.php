@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Reg extends Page{
     public function echoPassword(){
         if(isset($_POST['password'])){

@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Account extends Page{
     public function echoLogin()
     {
@@ -369,6 +370,9 @@ class Account extends Page{
                     unset($_SESSION['login']);
                     unset($_SESSION['status_id']);
                     unset($_SESSION['id']);
+                    if(is_dir('users/'.$login)===true){
+                        $this->deleteUserDir('users/'.$login);
+                    }
                     $_SESSION['delete_account'] = "<p style='color: green;'>Аккаунт $login удален.</p>";
                     header('Location: auth.php');
                 }

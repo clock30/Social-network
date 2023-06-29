@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Forum extends Page{
     public function themeList(){
         require 'classes/link.php';

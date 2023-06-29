@@ -1,4 +1,6 @@
 <?php
+namespace classes;
+
 class Page{
     public function header(){
         if (isset($_SESSION['auth'])) {
@@ -223,5 +225,21 @@ class Page{
             return "";
         }
         else return "<span class='unreaded_messages'>(".count($data).")</span>";
+    }
+
+    public function deleteUserDir($path){
+        if(!empty(array_diff(scandir($path),['.','..']))){
+            foreach(array_diff(scandir($path),['.','..']) as $item) {
+                $path2 = $path;
+                $path .= "/".$item;
+                if (is_file($path)) {
+                    unlink($path);
+                } else {
+                    $this->deleteUserDir($path);
+                }
+                $path = $path2;
+            }
+        }
+        rmdir($path);
     }
 }

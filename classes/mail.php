@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Mail extends Page{
     private int $user_one;
     //private int $user_two;

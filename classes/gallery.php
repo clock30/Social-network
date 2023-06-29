@@ -1,5 +1,4 @@
-<meta charset="utf-8">
-<?php include 'link.php';
+<?php namespace classes;
 class Gallery extends Page{
 
     public function login(){
@@ -97,6 +96,9 @@ class Gallery extends Page{
         if(isset($_SESSION['auth'])) {
             $id = $_SESSION['id'];
             $file = $_GET['delete_photo'];
+            $arr_file_comments = explode('.',$file);
+            $arr_file_comments[1] = 'txt';
+            $file_comments = implode('.',$arr_file_comments);
             if ($_GET['id']==$id) {
                 require 'classes/link.php';
                 $query = "SELECT * FROM auth WHERE id='$id'";
@@ -104,6 +106,9 @@ class Gallery extends Page{
                 $data = mysqli_fetch_assoc($result);
                 unlink('users/'.$data['login'].'/photos/'.$file);
                 unlink('users/'.$data['login'].'/icons/'.$file);
+                if(file_exists('users/'.$data['login'].'/comments/'.$file_comments)===true){
+                    unlink('users/'.$data['login'].'/comments/'.$file_comments);
+                }
                 header("Location: gallery.php?id=$id");
             }
             else header("Location: auth.php");

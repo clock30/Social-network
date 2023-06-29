@@ -1,5 +1,6 @@
 <?php
-class Message extends Page{
+namespace classes;
+class Message extends Page{//Класс Message не используется, все методы в классе Mail
     private int $user_one;
     private int $user_two;
     private string $message;

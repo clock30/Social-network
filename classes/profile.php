@@ -1,5 +1,5 @@
-<meta charset="utf-8">
-<?php include 'link.php';
+<?php
+namespace classes;
 class Profile extends Page{
 
     public function age(){

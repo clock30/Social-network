@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Friends extends Profile{
     public function friendsList()
     {
